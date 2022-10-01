@@ -1,6 +1,5 @@
-import { useThree } from "@react-three/fiber";
-import { useEffect } from "react";
 import { usePlane } from "@react-three/cannon";
+import { useThree } from "@react-three/fiber";
 
 interface PlaneProps {
   rotation: [x: number, y: number, z: number];

@@ -3,6 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import Box from "../components/Box";
 import Borders from "./Borders";
 import { Physics } from "@react-three/cannon";
+import Mouse from "./Mouse";
 
 export const ThreeScene = () => {
   return (
@@ -12,20 +13,14 @@ export const ThreeScene = () => {
       <OrthographicCamera />
       <ambientLight />
       <pointLight position={[5, 5, 5]} />
-      {/* <Text
-        color="black"
-        fontSize={0.2}
-        anchorX="center"
-        anchorY="middle"
-        scale={3.5}
-        position={[3, 0, 0]}
+      <Physics
+        gravity={[0, -50, 0]}
+        defaultContactMaterial={{ restitution: 0.5 }}
       >
-        Click Me
-      </Text> */}
-      <Physics>
+        <Mouse />
         <Box position={[0, 3, 0]} />
-        <Box position={[0, 7, -0.25]} />
-        <Box position={[0, 9, 0.25]} />
+        <Box position={[0.1, 7, -0.25]} />
+        <Box position={[-0.1, 6, 0.25]} />
         <Box position={[0, 9, 0.25]} />
         <Borders />
       </Physics>
