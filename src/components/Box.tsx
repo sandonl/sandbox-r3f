@@ -1,10 +1,15 @@
-import { useSpring, config, a } from "@react-spring/three";
+import { a, config, useSpring } from "@react-spring/three";
+import { useBox } from "@react-three/cannon";
 import { useFrame } from "@react-three/fiber";
-import React, { useRef, useState } from "react";
-import { Mesh } from "three";
+import React, { useState } from "react";
+import { BufferGeometry, Mesh } from "three";
 
-const Box = () => {
-  const myMesh = useRef<Mesh>(null);
+interface BoxProps {
+  position: [x: number, y: number, z: number];
+}
+
+const Box = (props: BoxProps) => {
+  const [ref] = useBox(() => ({ mass: 1, ...props }));
   const [active, setActive] = useState(false);
 
   const { spring } = useSpring({
@@ -17,13 +22,6 @@ const Box = () => {
   const rotationX = spring.to([0, 1], [0, Math.PI]);
   const color = spring.to([0, 1], ["#6246ea", "#e45858"]);
 
-  useFrame(() => {
-    if (myMesh.current) {
-      // myMesh.current.rotation.x += 0.01;
-      // myMesh.current.rotation.y += 0.01;
-    }
-  });
-
   return (
     <a.group>
       <a.mesh
@@ -31,7 +29,7 @@ const Box = () => {
         rotation-x={rotationX}
         scale={scale}
         onClick={() => setActive(!active)}
-        ref={myMesh}
+        ref={ref as React.RefObject<Mesh<BufferGeometry>>}
       >
         <boxGeometry />
         {/* @ts-ignore */}
