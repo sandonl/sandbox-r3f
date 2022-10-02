@@ -13,7 +13,7 @@ const Plane = (props: PlaneProps) => {
     // @ts-ignore
     <mesh receiveShadow ref={ref}>
       <planeGeometry args={[25, 25]} />
-      <meshStandardMaterial color="royalBlue" />
+      <meshLambertMaterial transparent={true} opacity={0} />
     </mesh>
   );
 };

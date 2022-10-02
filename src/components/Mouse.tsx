@@ -1,9 +1,9 @@
 import { useFrame, useThree } from "@react-three/fiber";
-import { useSphere } from "@react-three/cannon";
+import { useBox } from "@react-three/cannon";
 
 const Mouse = () => {
   const { viewport } = useThree();
-  const [, api] = useSphere(() => ({ type: "Kinematic", args: [6] }));
+  const [, api] = useBox(() => ({ type: "Kinematic" }));
   return useFrame((state) =>
     api.position.set(
       (state.mouse.x * viewport.width) / 2,

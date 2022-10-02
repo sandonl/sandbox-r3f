@@ -20,7 +20,7 @@ const Box = (props: BoxProps) => {
   const scale = spring.to([0, 1], [1, 2]);
   const rotationY = spring.to([0, 1], [0, Math.PI]);
   const rotationX = spring.to([0, 1], [0, Math.PI]);
-  const color = spring.to([0, 1], ["#6246ea", "#e45858"]);
+  const color = spring.to([0, 1], ["#5e7fb5", "#e45858"]);
 
   return (
     <a.group>
